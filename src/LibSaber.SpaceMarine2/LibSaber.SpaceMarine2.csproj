@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,26 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="16.1.2" />
-	<PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.45" PrivateAssets="all" />
   </ItemGroup>
-	
-	<Target Name="ILRepack" AfterTargets="Build">
-	
-		<PropertyGroup>
-			<WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)</WorkingDirectory>
-		</PropertyGroup>
-	
-		<ItemGroup>
-			<InputAssemblies Include="YamlDotNet.dll" />
-		</ItemGroup>
-	
-		<ILRepack 
-			OutputType="$(OutputType)" 
-			MainAssembly="$(AssemblyName).dll" 
-			OutputAssembly="$(AssemblyName).dll" 
-			InputAssemblies="@(InputAssemblies)"
-			WorkingDirectory="$(WorkingDirectory)" />
-	
-	</Target>
 
 </Project>
