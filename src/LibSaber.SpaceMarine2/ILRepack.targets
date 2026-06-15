@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="ILRepacker" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Running custom ILRepack for $(TargetName)" Importance="high" />
+
+    <ItemGroup>
+      <InputAssemblies Include="$(TargetDir)$(TargetName).dll" />
+      <InputAssemblies Include="$(TargetDir)YamlDotNet.dll" />
+    </ItemGroup>
+
+    <ILRepack
+      InputAssemblies="@(InputAssemblies)"
+      TargetKind="Dll"
+      OutputFile="$(TargetDir)$(TargetName).dll"
+      LibraryPath="$(TargetDir)" />
+  </Target>
+
+</Project>
